@@ -98,7 +98,7 @@ Este projeto implementa o algoritmo **MaxMin Select**, que encontra simultaneame
 
 ## Como Executar o Projeto
 ### Requisitos
-- Python 3.x instalado
+- Projeto realizado na versão do Python 3.13.2
 
 ### Passos para executar
 1. Clone o repositório:
@@ -117,30 +117,62 @@ Este projeto implementa o algoritmo **MaxMin Select**, que encontra simultaneame
 
 ## Relatório Técnico
 
-### Análise de Complexidade pelo Método de Contagem de Operações
-- A abordagem ingênua para encontrar o menor e o maior faria **2(n-1) comparações**.
-- No **MaxMin Select**, para cada divisão do array:
-  - Chamamos a função recursivamente duas vezes.
-  - Cada chamada recursiva executa **2T(n/2) + 2 comparações** (1 para o mínimo e 1 para o máximo).
-- O número total de comparações é **3n/2 - 2**, resultando em complexidade **O(n)**.
+### Análise da Complexidade Assintótica do Algoritmo `selecao_maxmin`
 
-### Análise de Complexidade pelo Teorema Mestre
-A recorrência do algoritmo é:
+#### 1. Contagem de Operações e Complexidade O(n)
+O algoritmo `selecao_maxmin` utiliza a estratégia de divisão e conquista para encontrar o menor e o maior elemento de um array. Vamos analisar o número de comparações realizadas:
+
+**Casos Base:**
+- Se `len(arr) == 1`: Nenhuma comparação é feita.
+- Se `len(arr) == 2`: Apenas 1 comparação para determinar o menor e o maior.
+
+**Divisão Recursiva:**
+- O array é dividido em duas metades (`arr[:meio]` e `arr[meio:]`), gerando duas chamadas recursivas.
+
+**Combinação dos Resultados:**
+- São feitas **duas comparações**:
+  - `min(menor_esq, menor_dir)` → **1 comparação**
+  - `max(maior_esq, maior_dir)` → **1 comparação**
+- Total por nível: **2 comparações**.
+
+**Recorrência:**
+Podemos expressar a recorrência do número total de comparações como:
+```math
+T(n) = 2T(n/2) + 2
 ```
+Usando substituições sucessivas, obtemos:
+```math
+T(n) = n - 1
+```
+Portanto, a complexidade assintótica é **O(n)**, pois o número de comparações cresce linearmente com `n`.
+
+---
+
+#### 2. Aplicação do Teorema Mestre
+A recorrência do algoritmo é:
+```math
 T(n) = 2T(n/2) + O(1)
 ```
-1. Comparando com a forma geral do Teorema Mestre:
-   ```
-   T(n) = aT(n/b) + f(n)
-   ```
-   - **a = 2** (número de chamadas recursivas)
-   - **b = 2** (divisão do problema em duas partes)
-   - **f(n) = O(1)** (comparações adicionais)
-2. Calculamos `log_b(a) = log_2(2) = 1`.
-3. Como **f(n) = O(1) = O(n^0)**, temos **p = 0**.
-4. Comparando `p` com `log_b(a)`, vemos que `p < log_b(a)`, então aplicamos o **Caso 1** do Teorema Mestre:
-   - A solução assintótica é **O(n)**.
+Comparando com a forma geral do Teorema Mestre:
+```math
+T(n) = aT(n/b) + f(n)
+```
+- **a = 2** (número de chamadas recursivas)
+- **b = 2** (divisão do problema)
+- **f(n) = O(1)** (comparações adicionais)
 
-## Conclusão
-O algoritmo **MaxMin Select** utiliza a abordagem de **divisão e conquista** para reduzir o número de comparações necessárias para encontrar o maior e o menor elemento em um array. Sua complexidade **O(n)** é melhor que a abordagem ingênua de **O(2n-2)**. O estudo da recorrência pelo **Teorema Mestre** confirma essa eficiência, demonstrando que a abordagem escalona linearmente.
+**Cálculo do logaritmo:**
+```math
+p = log_2(2) = 1
+```
+Como **f(n) = O(1) = O(n^0)**, temos **p = 0**. Comparando `p` com `log_b(a)`, vemos que `p < log_b(a)`, então aplicamos o **Caso 1** do Teorema Mestre:
+```math
+T(n) = O(n)
+```
+Portanto, confirmamos que a complexidade do algoritmo é **O(n)**.
 
+## Diagrama de Fluxo
+Abaixo o diagrama ilustrando a divisão e combinação no algoritmo MaxMin Select:
+
+## Referências 
+- AULA 01_Análise de complexidade de algoritmos.pdf
