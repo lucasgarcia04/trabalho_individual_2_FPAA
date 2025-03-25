@@ -171,8 +171,10 @@ T(n) = O(n)
 ```
 Portanto, confirmamos que a complexidade do algoritmo é **O(n)**.
 
-## Diagrama de Fluxo
+## Diagrama de divisão e combinação
 Abaixo o diagrama ilustrando a divisão e combinação no algoritmo MaxMin Select:
+![Diagrama de divisão e combinação](images/DivisaoCombinacao.png)
+
 
 ## Referências 
 - AULA 01_Análise de complexidade de algoritmos.pdf
