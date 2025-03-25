@@ -102,8 +102,8 @@ Este projeto implementa o algoritmo **MaxMin Select**, que encontra simultaneame
 ### Passos para executar
 1. Clone o repositório:
    ```sh
-   git clone <URL_DO_REPOSITORIO>
-   cd <NOME_DO_REPOSITORIO>
+   git clone <https://github.com/lucasgarcia04/trabalho_individual_2_FPAA.git>
+   cd <trabalho_individual_2_FPAA>
    ```
 2. Código principal:
    ```sh
@@ -141,14 +141,13 @@ T(n) = 2T(n/2) + 2
 T(n) = 2(2T(n/4) + 2) + 2
 T(n) = 4T(n/4) + 4 + 2
 ...
-T(n) = (n/2) \times 2 + (n/4) \times 2 + ... + 2
+T(n) = (n/2) * 2 + (n/4) * 2 + ... + 2
 ```
 Resolvendo, obtemos:
 ```sh
-T(n) \approx \frac{3n}{2} - 2
+T(n) = (3n / 2) - 2
 ```
 Ou seja, a complexidade assintótica continua sendo O(n), mas com uma contagem de comparações menor que a abordagem ingênua.
-
 
 ---
 
