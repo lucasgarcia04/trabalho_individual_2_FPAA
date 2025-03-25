@@ -75,27 +75,6 @@ Este projeto implementa o algoritmo **MaxMin Select**, que encontra simultaneame
    ```
    - Retorna o menor e o maior elemento encontrados.
 
-8. **Execução do Programa Principal:**
-   ```python
-   if __name__ == "__main__":
-   ```
-   - Verifica se o script está sendo executado diretamente (não importado como módulo).
-
-9. **Definição da Lista de Entrada:**
-   ```python
-   sequencia = [3, 5, 1, 9, 2, 8, 4, 7]
-   ```
-   - Define uma lista de números para teste.
-
-10. **Chamada da Função e Impressão dos Resultados:**
-    ```python
-    menor, maior = selecao_maxmin(sequencia)
-    print(f"Menor elemento: {menor}")
-    print(f"Maior elemento: {maior}")
-    ```
-    - Chama `selecao_maxmin(sequencia)` para encontrar os elementos mínimo e máximo.
-    - Exibe os resultados na tela.
-
 ## Como Executar o Projeto
 ### Requisitos
 - Projeto realizado na versão do Python 3.13.2
