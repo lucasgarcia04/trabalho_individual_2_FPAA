@@ -9,6 +9,7 @@
 Este projeto implementa o algoritmo **MaxMin Select**, que encontra simultaneamente o maior e o menor elemento de uma lista utilizando a abordagem de **divisão e conquista**. Esse método reduz o número de comparações em relação a uma abordagem ingênua, tornando a solução mais eficiente.
 
 ### Estrutura dos Arquivos
+- **`images`**: Pasta com as imagens usados no projeto.
 - **`main.py`**: Contém a implementação do algoritmo MaxMin Select.
 - **`README.md`**: Documentação detalhada sobre o projeto, explicação do código, análise da complexidade e instruções de execução.
 - **`test_maxmin.py`**: Arquivo de testes unitários para validar o funcionamento do algoritmo.
@@ -26,6 +27,25 @@ Este projeto implementa o algoritmo **MaxMin Select**, que encontra simultaneame
    - O maior global é o maior entre os maiores das duas metades.
 
 ### Explicação do Código Linha por Linha
+## Código:
+```python
+    def selecao_maxmin(arr):
+    if len(arr) == 1:
+        return arr[0], arr[0]
+    
+    if len(arr) == 2:
+        return (arr[0], arr[1]) if arr[0] < arr[1] else (arr[1], arr[0])
+
+    meio = len(arr) // 2
+
+    menor_esq, maior_esq = selecao_maxmin(arr[:meio])
+    menor_dir, maior_dir = selecao_maxmin(arr[meio:])
+
+    menor_total = min(menor_esq, menor_dir)
+    maior_total = max(maior_esq, maior_dir)
+
+    return menor_total, maior_total
+```
 1. **Definição da Função:**
    ```python
    def selecao_maxmin(arr):
@@ -85,11 +105,11 @@ Este projeto implementa o algoritmo **MaxMin Select**, que encontra simultaneame
    git clone <URL_DO_REPOSITORIO>
    cd <NOME_DO_REPOSITORIO>
    ```
-2. Execute o código principal:
+2. Código principal:
    ```sh
    python main.py
    ```
-3. Para rodar os testes:
+3. Executar os testes:
    ```sh
    python -m unittest test_maxmin.py
    ```
@@ -99,31 +119,36 @@ Este projeto implementa o algoritmo **MaxMin Select**, que encontra simultaneame
 ### Análise da Complexidade Assintótica do Algoritmo `selecao_maxmin`
 
 #### 1. Contagem de Operações e Complexidade O(n)
-O algoritmo `selecao_maxmin` utiliza a estratégia de divisão e conquista para encontrar o menor e o maior elemento de um array. Vamos analisar o número de comparações realizadas:
+O array é dividido em duas metades (arr[:meio] e arr[meio:]).
 
-**Casos Base:**
-- Se `len(arr) == 1`: Nenhuma comparação é feita.
-- Se `len(arr) == 2`: Apenas 1 comparação para determinar o menor e o maior.
+Cada metade é processada recursivamente.
 
-**Divisão Recursiva:**
-- O array é dividido em duas metades (`arr[:meio]` e `arr[meio:]`), gerando duas chamadas recursivas.
+Combinação:
 
-**Combinação dos Resultados:**
-- São feitas **duas comparações**:
-  - `min(menor_esq, menor_dir)` → **1 comparação**
-  - `max(maior_esq, maior_dir)` → **1 comparação**
-- Total por nível: **2 comparações**.
+São feitas apenas duas comparações adicionais:
 
-**Recorrência:**
-Podemos expressar a recorrência do número total de comparações como:
-```math
+`min(menor_esq, menor_dir)` → 1 comparação
+
+`max(maior_esq, maior_dir)` → 1 comparação
+
+O número total de comparações segue a relação de recorrência:
+  ```sh
 T(n) = 2T(n/2) + 2
+  ```
+Expandindo recursivamente:
+  ```sh
+T(n) = 2T(n/2) + 2
+T(n) = 2(2T(n/4) + 2) + 2
+T(n) = 4T(n/4) + 4 + 2
+...
+T(n) = (n/2) \times 2 + (n/4) \times 2 + ... + 2
 ```
-Usando substituições sucessivas, obtemos:
-```math
-T(n) = n - 1
+Resolvendo, obtemos:
+```sh
+T(n) \approx \frac{3n}{2} - 2
 ```
-Portanto, a complexidade assintótica é **O(n)**, pois o número de comparações cresce linearmente com `n`.
+Ou seja, a complexidade assintótica continua sendo O(n), mas com uma contagem de comparações menor que a abordagem ingênua.
+
 
 ---
 
@@ -152,6 +177,7 @@ Portanto, confirmamos que a complexidade do algoritmo é **O(n)**.
 
 ## Diagrama de divisão e combinação
 Abaixo o diagrama ilustrando a divisão e combinação no algoritmo MaxMin Select:
+
 ![Diagrama de divisão e combinação](images/DivisaoCombinacao.png)
 
 
